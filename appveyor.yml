@@ -108,9 +108,13 @@ build_script:
    #Prepare for python bindings
   - echo [build] compiler=mingw32 [build_ext] compiler=mingw32 >> c:\msys64\mingw32\lib\python2.7\distutils\distutils.cfg
   - echo [build] compiler=mingw32 [build_ext] compiler=mingw32 >> c:\msys64\mingw32\lib\python3.6\distutils\distutils.cfg
-
-  - mkdir C:\projects\libsmu-python  
-  - set HOME = C:\projects\libsmu\bindings\python
+    
+  - "python2 --version"
+  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+  
+  
+  #- mkdir C:\projects\libsmu-python  
+  #- set HOME = C:\projects\libsmu\bindings\python
   # update pip to keep it from complaining
   - "pip2 install --only-binary :all: --disable-pip-version-check --user --upgrade pip"
   # wheel needs to be installed in order to build binary wheels for pysmu
@@ -121,16 +125,18 @@ build_script:
   # build python dist files
   - cd C:\projects\libsmu\bindings\python
   - ls
-  - "python2 --version"
-  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+  
   - "python2 setup.py build_ext --compiler=mingw32 -L C:\\projects\\libsmu\\mingw-32\\src -I C:\\libusb-mingw\\include\\libusb-1.0"
   - "python2 setup.py build"
-  #- "python2 setup.py bdist_wheel --skip-build"
-  - ls
-  - ls build/
-  - "python2 setup.py bdist --skip-build --format zip"
+  - "python2 setup.py bdist_wheel --skip-build"
+  - "python2 setup.py bdist --format zip"
   # test local install
-  - ps: Get-ChildItem dist/*-cp27-*-win32.whl | % { pip install "$_" }
+  - ps: Get-ChildItem dist/*-cp27-*-win32.whl | % { pip2 install "$_" }
+  
+  #- ls
+  #- ls build/
+  
+  
   
   # update pip to keep it from complaining
   - "pip3 install --only-binary :all: --disable-pip-version-check --user --upgrade pip"
