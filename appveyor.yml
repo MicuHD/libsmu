@@ -135,7 +135,7 @@ build_script:
   - ps: $PWD
   - ps: $PWD = ($PWD -replace "\\","/").Trim("/")
   - ps: $PWD
-  - ps: python2 setup.py bdist --format zip --bdist-base=$PWD
+  - "python2 setup.py bdist --format zip --bdist-base=$env:PWD"
   # test local install
   - ps: Get-ChildItem dist/*-cp27-*-win32.whl | % { pip2 install "$_" }
   
