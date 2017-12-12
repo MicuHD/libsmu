@@ -133,7 +133,7 @@ build_script:
   - ps: $PWD = Convert-Path .
   - ps: $PWD = $PWD + "\build-temp"
   - ps: $PWD
-  - ps: $PWD = (($PWD -replace "\\","/") -replace ":","").ToLower().Trim("/")
+  - ps: $PWD = ($PWD -replace "\\","/").Trim("/")
   - ps: $PWD
   - ps: python2 setup.py bdist --format zip --bdist-base=$PWD
   # test local install
