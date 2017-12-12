@@ -129,7 +129,7 @@ build_script:
   - "python2 setup.py build_ext --compiler=mingw32 -L C:\\projects\\libsmu\\mingw-32\\src -I C:\\libusb-mingw\\include\\libusb-1.0"
   - "python2 setup.py build"
   - "python2 setup.py bdist_wheel --skip-build"
-  - "python2 setup.py bdist --skip-build --format zip"
+  #- "python2 setup.py bdist --skip-build --format zip"
   # test local install
   - ps: Get-ChildItem dist/*-cp27-*-win32.whl | % { pip2 install "$_" }
   
@@ -140,8 +140,8 @@ build_script:
   - ps: Get-ChildItem dist/.\* | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   # push pysmu binaries as artifacts
-  - ren exe32\pysmu.exe pysmu32.exe
-  - ren exe64\pysmu.exe pysmu64.exe
+  #- ren exe32\pysmu.exe pysmu32.exe
+  #- ren exe64\pysmu.exe pysmu64.exe
   - appveyor PushArtifact exe32\pysmu32.exe
   - appveyor PushArtifact exe64\pysmu64.exe
 #========================================================================================================
