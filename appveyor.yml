@@ -142,8 +142,8 @@ build_script:
   # push pysmu binaries as artifacts
   #- ren exe32\pysmu.exe pysmu32.exe
   #- ren exe64\pysmu.exe pysmu64.exe
-  - appveyor PushArtifact exe32\pysmu32.exe
-  - appveyor PushArtifact exe64\pysmu64.exe
+  #- appveyor PushArtifact exe32\pysmu32.exe
+  #- appveyor PushArtifact exe64\pysmu64.exe
 #========================================================================================================
 
 cache:
