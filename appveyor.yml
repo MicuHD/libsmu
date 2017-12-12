@@ -126,7 +126,7 @@ build_script:
   - cd C:\projects\libsmu\bindings\python
   - ls
   
-  - "python2 setup.py build_ext --compiler=mingw32 -L C:\\projects\\libsmclu\\mingw-32\\src -I C:\\libusb-mingw\\include\\libusb-1.0"
+  - "python2 setup.py build_ext --compiler=mingw32 -L C:\\projects\\libsmu\\mingw-32\\src -I C:\\libusb-mingw\\include\\libusb-1.0"
   - "python2 setup.py build"
   - "python2 setup.py bdist_wheel --skip-build"
   - "python2 setup.py bdist --skip-build --format msi"
