@@ -131,9 +131,9 @@ build_script:
   - "python2 setup.py bdist_wheel --skip-build"
   - "python2 setup.py bdist --skip-build --format msi"
   - ps: $PWD = Convert-Path .
-  - ps: $PWD = $PWD + "/build-temp"
+  - ps: $PWD = $PWD + "\build-temp"
   - ps: $PWD
-  - ps: python2 setup.py bdist --format zip --bdist-base=build-temp
+  - ps: python2 setup.py bdist --format zip --bdist-base=$PWD
   # test local install
   - ps: Get-ChildItem dist/*-cp27-*-win32.whl | % { pip2 install "$_" }
   
